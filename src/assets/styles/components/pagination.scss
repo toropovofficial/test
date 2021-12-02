@@ -1,0 +1,13 @@
+.pagination {
+  margin: 30px auto;
+}
+.pagination ::v-deep .page-link{
+  background-color: #000;
+  border: 1px solid $hoverBtn;
+}
+
+@media (max-width: 500px) {
+.pagination  {
+  margin: 5px auto;
+}
+}

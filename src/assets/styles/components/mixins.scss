@@ -1,0 +1,30 @@
+@mixin searchStyles($w) {
+  color: $mainColor;
+  border: solid 1px $mainColor;
+  background: none;
+  width: $w;
+}
+@mixin flex($wrap: 'no-wrap', $jc: space-between) {
+  display: flex;
+  justify-content: $jc;
+  flex-wrap: $wrap;
+}
+@mixin size($w, $h) {
+  width: $w;
+  height: $h;
+}
+
+%after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    bottom: -5px;
+    background: $secondColor;
+}
+
+%cardColor {
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(166,166,166,0.9402135854341737) 100%,
+  rgba(0,212,255,1) 100%);
+}

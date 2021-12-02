@@ -1,0 +1,35 @@
+
+@import './components/variables.scss';
+@import './components/button.scss';
+@import './components/title';
+@import './components/mixins.scss';
+@import './components/pagination';
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  box-sizing: border-box;
+}
+* {
+  box-sizing: border-box;
+}
+h1, h2, h3, h4, h5, p, ul {
+  margin: 0;
+  padding: 0;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+section {
+  padding-top: 50px;
+}
+
+
+@media (max-width: 768px) {
+  section {
+    padding-top: 20px;
+  }
+}

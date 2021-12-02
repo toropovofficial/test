@@ -1,0 +1,23 @@
+.title {
+  color: $mainColor;
+  font-size: 30px;
+  margin-bottom: 20px;
+  animation: showTitle 1s;
+}
+
+
+
+  @keyframes showTitle {
+    0% {
+      transform: translateX(-1000px);
+    }
+
+    100% {
+    transform: none;
+    }
+  }
+  @media (max-width: 1024px) {
+    .title {
+      font-size: 24px;
+    }
+}
