@@ -31,12 +31,12 @@ export default Vue.extend({
   // beforeRouteUpdate() {
   //   console.log('beforeRouteUpdate');
   // },
-  beforeRouteLeave (to, from, next): void {
-    console.log('beforeRouteLeave')
-    if (prompt('вы точно хотите уйти со страницы? треки будут удалены навсегда')) {
-      next()
-    }
-  },
+  // beforeRouteLeave (to, from, next): void {
+  //   console.log('beforeRouteLeave')
+  //   if (prompt('вы точно хотите уйти со страницы? треки будут удалены навсегда')) {
+  //     next()
+  //   }
+  // },
   // mounted() {
   //   console.log(1);
   // },

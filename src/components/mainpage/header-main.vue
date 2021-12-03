@@ -2,7 +2,7 @@
   <header class="main-header">
     <router-link  class="main-header__logo btn" to="/">главная</router-link>
   <ul class="main-header__list" >
-    <router-link  class="main-header__link btn" to="/tes">test</router-link>
+    <!-- <router-link  class="main-header__link btn" to="/tes">test</router-link> -->
     <router-link  class="main-header__link btn" to="/playlist">мой плейлист</router-link>
     <router-link  class="main-header__link btn" to="/search">Поиск</router-link>
   </ul>

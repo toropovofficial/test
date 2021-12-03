@@ -1,9 +1,9 @@
 .DS_Store
-node_modules
-src
-public
+/node_modules
+/src
+/public
 git statuspublic
-.browserslistrc
+/.browserslistrc
 
 
 # local env files

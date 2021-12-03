@@ -21,11 +21,6 @@ export default Vue.extend({
   .topchart__item {
     cursor: pointer;
     margin-right: 40px;
-    transition: transform 0.5s ease-in;
-    &:hover {
-      transition: transform 0.5s ease-in;
-      transform: scale(1.2);
-    }
   }
   .topchart__image {
     @include size(200px, 200px);
@@ -41,6 +36,15 @@ export default Vue.extend({
     color: $mainColor;
   }
 
+@media (min-width: 1025px)  {
+  .topchart__item {
+    transition: transform 0.5s ease-in;
+    &:hover {
+      transition: transform 0.5s ease-in;
+      transform: scale(1.2);
+    }
+  }
+}
 @media (max-width: 500px) {
     .topchart__item {
       margin-right: 25px;

@@ -19,16 +19,16 @@ const router = new VueRouter({
     },
     {
       path: '/playlist',
-      component: () => import('../../components/myPlaylist/main.vue'),
-      beforeEnter: (to, from, next) => {
-        if ((store.state as any).generalTrackList.auth) {
-          alert('проходите')
-          next()
-        } else {
-          alert('нужно зарегистрироваться')
-          next({ path: '/' })
-        }
-      }
+      component: () => import('../../components/myPlaylist/main.vue')
+      // beforeEnter: (to, from, next) => {
+      //   if ((store.state as any).generalTrackList.auth) {
+      //     alert('проходите')
+      //     next()
+      //   } else {
+      //     alert('нужно зарегистрироваться')
+      //     next({ path: '/' })
+      //   }
+      // }
     },
     {
       path: '/pop',
@@ -49,10 +49,6 @@ const router = new VueRouter({
     {
       path: '*',
       component: () => import('../../components/notFound/notFoundPage.vue')
-    },
-    {
-      path: '/tes',
-      component: () => import('../../components/myPlaylist/tes.vue')
     }
   ]
 })
