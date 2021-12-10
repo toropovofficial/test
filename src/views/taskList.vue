@@ -39,6 +39,8 @@ export default Vue.extend({
   methods: {
     removeTask (title) {
       this.tasks = this.tasks.filter(item => item.titleTask !== title)
+      // GeneralTaskList.state.taskList = this.tasks
+      GeneralTaskList.setTasks(this.tasks)
     }
   },
   computed: {

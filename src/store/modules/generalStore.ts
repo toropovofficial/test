@@ -28,22 +28,25 @@ class GeneralTaskList {
   }
 
   public CHANGE_DROP (firstTask, indexFirstTask) {
+    console.log(firstTask, indexFirstTask)
     this.state.taskList.splice(indexFirstTask, 1)
-    console.log(firstTask)
     this.state.taskList.push(firstTask)
     this.state.taskList = this.state.taskList.sort((a, b) => +b.time - +a.time)
-    console.log(this.state.taskList)
   }
 
   @Action()
-  public setTasks (): void {
-    const arrayTasks = []
-    _.each((_.keys(localStorage)), (item) => {
-      if (item !== 'loglevel:webpack-dev-server') {
-        arrayTasks.push(JSON.parse(localStorage.getItem(item)))
-      }
-    })
-    this.CHANGE_TASKS(arrayTasks)
+  public setTasks (item): void {
+    if (item) {
+      this.CHANGE_TASKS(item)
+    } else {
+      const arrayTasks = []
+      _.each((_.keys(localStorage)), (item) => {
+        if (item !== 'loglevel:webpack-dev-server') {
+          arrayTasks.push(JSON.parse(localStorage.getItem(item)))
+        }
+      })
+      this.CHANGE_TASKS(arrayTasks)
+    }
   }
 
   public setUpdate (...params): void {

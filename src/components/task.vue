@@ -34,34 +34,40 @@ export default Vue.extend({
     }
   },
   data: () => ({
-    time: ''
+    time: '',
+    test: ''
   }),
+  beforeUpdate () {
+    this.test = Math.random()
+  },
   mounted () {
-    if (this.task.status !== 'expired') {
-      const interval = setInterval(() => {
-        const date1 = moment()
-        const date2 = moment(this.task.m)
-        const seconds = date2.diff(date1, 'seconds')
-        const duration = moment.duration(seconds, 'seconds')
-        this.time = duration.format('DD:hh:mm:ss')
-        if (this.time.split(':').join('') < 0) {
-          console.log('dkiwNJdOIdnWOjd')
-          this.time = 'expired'
-          this.task.status = 'expired'
-          clearInterval(interval)
-        } else if (this.time.split(':').join('') < 999) {
-          this.task.status = 'expires'
-        }
-      }, 1000)
-    }
+    this.test = Math.random()
+    // console.log(this.task)
+    // const test = this.task
+    // this.task = []
+    // this.task = test
+    // if (this.task.status !== 'expired') {
+    //   const interval = setInterval(() => {
+    //     const date1 = moment()
+    //     const date2 = moment(this.task.m)
+    //     const seconds = date2.diff(date1, 'seconds')
+    //     const duration = moment.duration(seconds, 'seconds')
+    //     this.time = duration.format('DD:hh:mm:ss')
+    //     if (this.time.split(':').join('') < 0) {
+    //       this.time = 'expired'
+    //       this.task.status = 'expired'
+    //       clearInterval(interval)
+    //     } else if (this.time.split(':').join('') < 999) {
+    //       this.task.status = 'expires'
+    //     }
+    //   }, 1000)
+    // }
   },
   methods: {
     getTitleForRemove () {
       this.$emit('getTitleTask', this.task.titleTask)
     },
     onDragStart (e) {
-      e.dataTransfer.dropEffect = 'move'
-      e.dataTransfer.effectAllowed = 'move'
       e.dataTransfer.setData('id', JSON.stringify(this.task))
     },
     onDragEnd (e) {
@@ -81,7 +87,7 @@ export default Vue.extend({
     }
   },
   watch: {
-    task: function (params) {
+    test (params) {
       if (this.task.status !== 'expired') {
         const interval = setInterval(() => {
           const date1 = moment()
@@ -107,7 +113,7 @@ export default Vue.extend({
 <style scoped lang="scss">
   .task {
     width: 400px;
-    min-height: 200px;
+    max-height: 200px;
     border: solid 1px grey;
     padding: 10px;
     position: relative;
@@ -117,6 +123,10 @@ export default Vue.extend({
     }
     &__descr {
       margin-top: 10px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      min-height: 100px;
     }
     &__footer {
       position: absolute;
