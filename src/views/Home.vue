@@ -1,18 +1,32 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="container">
+    <div class="home">
+      <h1 class="title">Добавление товара</h1>
+      <div class="home__wrapper">
+        <home-form></home-form>
+      </div>
+    </div>
   </div>
 </template>
 
-<script lang="ts">
+<script >
 import { Options, Vue } from 'vue-class-component';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import homeForm from '../components/homeForm.vue';
 
 @Options({
   components: {
-    HelloWorld,
+    homeForm,
   },
 })
 export default class Home extends Vue {}
 </script>
+
+<style scoped lang="scss">
+  @import '../assets/scss/styles.scss';
+  .home {
+    &__wrapper {
+      margin-top: 16px;
+      @include flex;
+    }
+  }
+</style>

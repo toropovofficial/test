@@ -1,0 +1,7 @@
+@mixin flex($jc: space-between, $ai: center, $fw: wrap,) {
+    display: flex;
+    justify-content: $jc;
+    align-items: $ai;
+    flex-wrap: $fw;
+  }
+  
