@@ -1,10 +1,16 @@
 <template>
   <label class="label" for="">{{labelText}}</label>
-  <input class="input" :type="typeInput" :placeholder="placeHolder">
+  <input
+    @input="change($event)"
+    :value="modelValue"
+    class="input"
+    :type="typeInput"
+    :placeholder="placeHolder">
 </template>
 
 <script>
 export default {
+  emits: ['update:modelValue'],
   props: {
     labelText: {
       type: String,
@@ -14,6 +20,14 @@ export default {
     },
     placeHolder: {
       type: String,
+    },
+    modelValue: {
+      type: String,
+    },
+  },
+  methods: {
+    change({ target }) {
+      this.$emit('update:modelValue', target.value);
     },
   },
 };
