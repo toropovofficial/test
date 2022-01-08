@@ -31,6 +31,10 @@
       </div>
     </div>
   </div>
+  <product-alert
+    v-if="alertValue"
+    :alertMsg="alertValue">
+  </product-alert>
 </template>
 
 <script >
@@ -40,6 +44,7 @@ import homeProduct from '../components/homeProduct.vue';
 import homeSelect from '../components/homeSecelct.vue';
 import loader from '../components/loader.vue';
 import homeInput from '../components/form-components/formInput.vue';
+import productAlert from '../components/productAlert.vue';
 
 @Options({
   components: {
@@ -48,6 +53,7 @@ import homeInput from '../components/form-components/formInput.vue';
     homeSelect,
     loader,
     homeInput,
+    productAlert,
   },
   created() {
     setTimeout(() => {
@@ -62,14 +68,18 @@ import homeInput from '../components/form-components/formInput.vue';
       isLoader: true,
       selectValue: 'default',
       filterName: '',
+      alertValue: '',
     };
   },
   methods: {
     addNewProduct(item) {
       this.arrayProducts.push(item);
+      this.alertValue = 'товар добавлен';
+      setTimeout(() => { this.alertValue = false; }, 300);
     },
     deleteItemFromArray(id) {
-      console.log(id);
+      this.alertValue = 'товар удален';
+      setTimeout(() => { this.alertValue = false; }, 300);
       this.arrayProducts = this.arrayProducts.filter((item) => item.id !== id);
     },
     deleteItemFromLocalStorage(id) {
@@ -78,8 +88,8 @@ import homeInput from '../components/form-components/formInput.vue';
   },
   computed: {
     test() {
-      if (this.selectValue === 'min') return this.arrayProducts.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-      if (this.selectValue === 'max') return this.arrayProducts.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+      if (this.selectValue === 'min') return this.arrayProducts.sort((a, b) => a.price.replace(/\s/g, '') - b.price.replace(/\s/g, ''));
+      if (this.selectValue === 'max') return this.arrayProducts.sort((a, b) => b.price.replace(/\s/g, '') - a.price.replace(/\s/g, ''));
       if (this.selectValue === 'names') return this.arrayProducts.filter((item) => item.name.includes(this.filterName));
       return this.arrayProducts.sort((a, b) => a.time - b.time);
     },
@@ -110,4 +120,20 @@ export default class Home extends Vue {}
       display: flex;
     }
   }
+
+  @media (max-width: 767px) {
+    .home {
+      &__wrapper {
+        @include flex(center, center, wrap,);
+      }
+      &__products {
+        flex-direction: column;
+        margin-left: 0;
+      }
+      &__wrapper-input {
+        margin: 0 auto;
+        margin-top: 10px;
+      }
+    }
+}
 </style>

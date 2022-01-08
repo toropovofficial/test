@@ -37,7 +37,6 @@ export default {
   },
   methods: {
     change({ target }) {
-      // target.value = target.value.toLocalString();
       this.$emit('update:modelValue', target.value);
     },
   },

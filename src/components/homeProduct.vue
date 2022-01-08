@@ -1,16 +1,16 @@
 <template>
   <article class="product">
     <picture class="product__img">
-      <img src="../assets/image/img.jpg" alt="">
+      <img :src="item.link" alt="image">
     </picture>
     <div class="product__body">
       <h1 class="product__title">{{item.name}}</h1>
     <p v-if="item.descr !== ''" class="product__descr">{{item.descr}}</p>
-    <span class="product__price">{{item.price}}.руб</span>
+    <span class="product__price">{{item.price}} руб</span>
     </div>
     <div @click="getIdForDelete" class="product__delete">
       <picture >
-      <img src="../assets/image/delete-icon.svg" alt="">
+      <img src="../assets/image/delete-icon.svg" alt="delete">
     </picture>
     </div>
   </article>
@@ -35,7 +35,7 @@ export default {
   .product {
     position: relative;
     width: 332px;
-    height: 423px;
+    min-height: 423px;
     background: #FFFEFB;
     box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
     border-radius: 4px;
@@ -45,10 +45,9 @@ export default {
     }
     &__img {
       width: 100%;
-      max-height: 200px;
       & img {
         width: 100%;
-        max-height: 100%;
+        max-height: 200px;
       }
     }
     &__body {
@@ -75,6 +74,7 @@ export default {
       color: $mainColor;
       display: block;
       margin-top: 32px;
+      word-wrap: break-word;
     }
     &__delete {
       @include flex(center);
@@ -94,4 +94,10 @@ export default {
       }
     }
   }
+
+ @media (max-width: 1024px) {
+   .product__delete {
+      display: flex;
+    }
+ }
 </style>
