@@ -1,30 +1,33 @@
 <template>
-  <form @submit.prevent="test" class="home__form">
+  <form @submit.prevent="createNewProduct(), saveProductToLocalStorage()" class="home__form">
     <form-input
     :labelText="'Наименование товара'"
     :typeInput="'text'"
     :placeHolder="'Введите наименование товара'"
-    v-model="nameProduct">
+    v-model.trim="nameProduct"
+    :errorMsg='error'>
     </form-input>
 
     <form-text-area
     :labelText="'Описание товара'"
     :placeHolder="'Введите описание товара'"
-    v-model="descrProduct">
+    v-model.trim="descrProduct">
     </form-text-area>
 
     <form-input
     :labelText="'Ссылка на изображение товара'"
     :typeInput="'text'"
     :placeHolder="'Введите описание товара'"
-    v-model="linkProduct">
+    v-model.trim="linkProduct"
+    :errorMsg='error'>
     </form-input>
 
     <form-input
     :labelText="'Цена товара'"
     :typeInput="'number'"
     :placeHolder="'Введите цену'"
-    v-model="priceProduct">
+    v-model="priceProduct"
+    :errorMsg='error'>
     </form-input>
 
     <form-button
@@ -40,6 +43,7 @@ import formTextArea from './form-components/formTextArea.vue';
 import formButton from './form-components/formButton.vue';
 
 export default {
+  emits: ['createProduct'],
   components: {
     formInput,
     formTextArea,
@@ -51,35 +55,40 @@ export default {
       descrProduct: '',
       linkProduct: '',
       priceProduct: '',
+      error: '',
+      newProduct: [],
     };
   },
   computed: {
     isDisabled() {
-      if (this.nameProduct.length > 3
-      && this.linkProduct.length > 5
-      && this.priceProduct.length > 1) {
-        return 'nodisabled';
+      if (this.nameProduct.length === 0
+      || this.linkProduct.length === 0
+      || this.priceProduct.length === 0) {
+        return 'disabled';
       }
-      return 'disabled';
+      return 'no-disabled';
     },
   },
   methods: {
-    test() {
-      console.log(2);
+    createNewProduct() {
+      if (this.isDisabled === 'disabled') {
+        this.error = 'Поле является обязательным';
+      } else {
+        this.newProduct = {
+          name: this.nameProduct,
+          descr: this.descrProduct,
+          link: this.linkProduct,
+          price: this.priceProduct,
+          id: Math.random(),
+          time: Date.now(),
+        };
+        this.$emit('createProduct', this.newProduct);
+      }
     },
-  },
-  watch: {
-    nameProduct(value) {
-      console.log(value);
-    },
-    linkProduct(value) {
-      console.log(value);
-    },
-    priceProduct(value) {
-      console.log(value);
-    },
-    descrProduct(value) {
-      console.log(value);
+    saveProductToLocalStorage() {
+      if (this.isDisabled !== 'disabled') {
+        localStorage.setItem(`product${this.newProduct.id}`, JSON.stringify(this.newProduct));
+      }
     },
   },
 };

@@ -1,5 +1,5 @@
 <template>
-  <label class="label" for="">{{labelText}}</label>
+  <label class="label" >{{labelText}}</label>
   <textarea
     @input="change($event)"
     :value="modelValue"

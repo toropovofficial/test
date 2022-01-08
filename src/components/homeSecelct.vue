@@ -1,11 +1,27 @@
 <template>
-  <select>
-    <option value="fff">По умолчанию</option>
-    <option value="ff2f">По цене min</option>
-    <option value="ff3f">По цене max</option>
-    <option value="fsadad">По наименованию.</option>
+  <select  @change="changeValue($event)">
+    <option value="default">По умолчанию</option>
+    <option value="min">По цене min</option>
+    <option value="max">По цене max</option>
+    <option value="names">По имени</option>
+    <input type="text">
   </select>
 </template>
+<script>
+export default {
+  emits: ['update:modelValue'],
+  props: {
+    modelValue: {
+      type: String,
+    },
+  },
+  methods: {
+    changeValue({ target }) {
+      this.$emit('update:modelValue', target.value);
+    },
+  },
+};
+</script>
 
 <style scoped lang="scss">
   select {

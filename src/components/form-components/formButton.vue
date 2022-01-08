@@ -1,5 +1,5 @@
 <template>
-  <button @click='test' :class="disabled === 'disabled' ? disabled : ''" class="btn" type="submit" >
+  <button  :class="disabled === 'disabled' ? disabled : ''" class="btn" type="submit" >
     {{btnText}}
   </button>
 </template>
@@ -12,11 +12,6 @@ export default {
     },
     disabled: {
       type: String,
-    },
-  },
-  methods: {
-    test() {
-      console.log(1);
     },
   },
 };
