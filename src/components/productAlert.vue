@@ -3,7 +3,7 @@
     {{alertMsg}}</div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   props: {
     alertMsg: {

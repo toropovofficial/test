@@ -8,7 +8,7 @@
   </textarea>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   emits: ['update:modelValue'],
   props: {
@@ -23,7 +23,7 @@ export default {
     },
   },
   methods: {
-    change({ target }) {
+    change({ target }: any): void {
       this.$emit('update:modelValue', target.value);
     },
   },

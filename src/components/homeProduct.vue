@@ -16,14 +16,20 @@
   </article>
 </template>
 
-<script>
+<script lang="ts">
+
 export default {
-  emits: ['sendId'],
+  emits: {
+    sendId(id: number) {
+      if (id) return true;
+      return false;
+    },
+  },
   props: {
-    item: {},
+    item: {} as any,
   },
   methods: {
-    getIdForDelete() {
+    getIdForDelete(): void {
       this.$emit('sendId', this.item.id);
     },
   },

@@ -7,7 +7,7 @@
     <input type="text">
   </select>
 </template>
-<script>
+<script lang="ts">
 export default {
   emits: ['update:modelValue'],
   props: {
@@ -16,7 +16,7 @@ export default {
     },
   },
   methods: {
-    changeValue({ target }) {
+    changeValue({ target }: any): void {
       this.$emit('update:modelValue', target.value);
     },
   },

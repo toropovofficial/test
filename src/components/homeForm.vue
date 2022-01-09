@@ -40,10 +40,11 @@
   </form>
 </template>
 
-<script>
+<script lang="ts">
 import formInput from './form-components/formInput.vue';
 import formTextArea from './form-components/formTextArea.vue';
 import formButton from './form-components/formButton.vue';
+import { dataHomeForm } from '../dataInterface';
 
 export default {
   emits: ['createProduct'],
@@ -52,19 +53,19 @@ export default {
     formTextArea,
     formButton,
   },
-  data() {
+  data(): dataHomeForm {
     return {
       nameProduct: '',
       descrProduct: '',
       linkProduct: '',
       priceProduct: '',
       error: '',
-      newProduct: [],
+      newProduct: {},
 
     };
   },
   computed: {
-    isDisabled() {
+    isDisabled(): string {
       if (this.nameProduct.length === 0
       || this.linkProduct.length === 0
       || this.priceProduct.length === 0) {
@@ -74,7 +75,7 @@ export default {
     },
   },
   methods: {
-    createNewProduct() {
+    createNewProduct(): void {
       if (this.isDisabled === 'disabled') {
         this.error = 'Поле является обязательным';
       } else {
@@ -89,12 +90,12 @@ export default {
         this.$emit('createProduct', this.newProduct);
       }
     },
-    saveProductToLocalStorage() {
+    saveProductToLocalStorage(): void {
       if (this.isDisabled !== 'disabled') {
         localStorage.setItem(`product${this.newProduct.id}`, JSON.stringify(this.newProduct));
       }
     },
-    resetForm() {
+    resetForm(): void {
       this.nameProduct = '';
       this.descrProduct = '';
       this.linkProduct = '';

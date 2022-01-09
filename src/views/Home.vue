@@ -37,7 +37,7 @@
   </product-alert>
 </template>
 
-<script >
+<script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import homeForm from '../components/homeForm.vue';
 import homeProduct from '../components/homeProduct.vue';
@@ -45,6 +45,7 @@ import homeSelect from '../components/homeSecelct.vue';
 import loader from '../components/loader.vue';
 import homeInput from '../components/form-components/formInput.vue';
 import productAlert from '../components/productAlert.vue';
+import { dataHome, newProduct } from '../dataInterface';
 
 @Options({
   components: {
@@ -58,11 +59,11 @@ import productAlert from '../components/productAlert.vue';
   created() {
     setTimeout(() => {
       this.isLoader = false;
-      Object.keys(localStorage).filter((item) => item.substr(0, 7) === 'product').forEach((item) => this.arrayProducts.push(JSON.parse(localStorage.getItem(item))));
-      this.arrayProducts.sort((a, b) => a.time - b.time);
+      Object.keys(localStorage).filter((item) => item.substr(0, 7) === 'product').forEach((item) => this.arrayProducts.push(JSON.parse(localStorage.getItem(item) as any)));
+      this.arrayProducts.sort((a: newProduct, b: newProduct) => a.time - b.time);
     }, 500);
   },
-  data() {
+  data(): dataHome {
     return {
       arrayProducts: [],
       isLoader: true,
@@ -72,26 +73,26 @@ import productAlert from '../components/productAlert.vue';
     };
   },
   methods: {
-    addNewProduct(item) {
+    addNewProduct(item: newProduct): void {
       this.arrayProducts.push(item);
       this.alertValue = 'товар добавлен';
       setTimeout(() => { this.alertValue = false; }, 300);
     },
-    deleteItemFromArray(id) {
+    deleteItemFromArray(id: number): void {
       this.alertValue = 'товар удален';
       setTimeout(() => { this.alertValue = false; }, 300);
-      this.arrayProducts = this.arrayProducts.filter((item) => item.id !== id);
+      this.arrayProducts = this.arrayProducts.filter((item: newProduct) => item.id !== id);
     },
-    deleteItemFromLocalStorage(id) {
+    deleteItemFromLocalStorage(id: number): void {
       localStorage.removeItem(`product${id}`);
     },
   },
   computed: {
-    test() {
-      if (this.selectValue === 'min') return this.arrayProducts.sort((a, b) => a.price.replace(/\s/g, '') - b.price.replace(/\s/g, ''));
-      if (this.selectValue === 'max') return this.arrayProducts.sort((a, b) => b.price.replace(/\s/g, '') - a.price.replace(/\s/g, ''));
-      if (this.selectValue === 'names') return this.arrayProducts.filter((item) => item.name.includes(this.filterName));
-      return this.arrayProducts.sort((a, b) => a.time - b.time);
+    test(): any {
+      if (this.selectValue === 'min') return this.arrayProducts.sort((a: any, b: any) => a.price.replace(/\s/g, '') - b.price.replace(/\s/g, ''));
+      if (this.selectValue === 'max') return this.arrayProducts.sort((a: any, b: any) => b.price.replace(/\s/g, '') - a.price.replace(/\s/g, ''));
+      if (this.selectValue === 'names') return this.arrayProducts.filter((item: newProduct) => item.name.includes(this.filterName));
+      return this.arrayProducts.sort((a: newProduct, b: newProduct) => a.time - b.time);
     },
   },
 })
