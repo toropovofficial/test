@@ -44,16 +44,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.input__wrapper {
-  position: relative;
-}
 .error {
   border: 1px solid #FF8484;
 }
 .error-msg {
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -15px;
   font-weight: normal;
   font-size: 8px;
   line-height: 10px;

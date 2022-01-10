@@ -1,4 +1,5 @@
 <template>
+<div class="input__wrapper">
   <label class="label" >{{labelText}}</label>
   <textarea
     @input="change($event)"
@@ -6,6 +7,7 @@
     class="textarea"
     :placeholder="placeHolder">
   </textarea>
+</div>
 </template>
 
 <script>

@@ -7,7 +7,10 @@
   border: none;
   outline: none;
   padding: 10px;
-  margin-bottom: 16px;
+  resize: none;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
   &::placeholder {
     font-weight: normal;
     font-size: 12px;

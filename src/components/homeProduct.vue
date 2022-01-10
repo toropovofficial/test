@@ -1,8 +1,7 @@
 <template>
   <article class="product">
-    <picture class="product__img">
-      <img :src="item.link" alt="image">
-    </picture>
+    <div :style="{background:`url('${item.link}')`}" class="product__img">
+    </div>
     <div class="product__body">
       <h1 class="product__title">{{item.name}}</h1>
     <p v-if="item.descr !== ''" class="product__descr">{{item.descr}}</p>
@@ -45,11 +44,11 @@ export default {
     }
     &__img {
       width: 100%;
-      & img {
-        width: 100%;
-        max-height: 200px;
-      }
-    }
+      height: 200px;
+      border-radius: 4px;
+      background-position: center!important;
+      background-size: cover!important;
+}
     &__body {
       padding: 0 16px;
     }

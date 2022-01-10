@@ -34,8 +34,7 @@
 
       <form-button
       :btnText="'Добавить товар'"
-      :disabled="isDisabled"
-      @clickClear="resetForm">
+      :disabled="isDisabled">
       </form-button>
   </form>
 </template>
@@ -92,13 +91,12 @@ export default {
     saveProductToLocalStorage() {
       if (this.isDisabled !== 'disabled') {
         localStorage.setItem(`product${this.newProduct.id}`, JSON.stringify(this.newProduct));
+        this.nameProduct = '';
+        this.descrProduct = '';
+        this.linkProduct = '';
+        this.priceProduct = '';
+        this.error = '';
       }
-    },
-    resetForm() {
-      this.nameProduct = '';
-      this.descrProduct = '';
-      this.linkProduct = '';
-      this.priceProduct = '';
     },
   },
 };
@@ -107,7 +105,7 @@ export default {
 <style lang="scss" scoped>
   .home__form {
     width: 332px;
-    height: 440px;
+    min-height: 440px;
     background: #FFFEFB;
     box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
     border-radius: 4px;

@@ -20,8 +20,8 @@
           </home-form>
         <section class="home__products" v-if="arrayProducts.length">
           <home-product
-            v-for="item in test"
-            :key="item"
+            v-for="item in products"
+            :key="item.id"
             :item="item"
             @sendId="deleteItemFromArray(item.id), deleteItemFromLocalStorage(item.id)">
           </home-product>
@@ -87,7 +87,7 @@ import productAlert from '../components/productAlert.vue';
     },
   },
   computed: {
-    test() {
+    products() {
       if (this.selectValue === 'min') return this.arrayProducts.sort((a, b) => +a.price.split(',').join('') - +b.price.split(',').join(''));
       if (this.selectValue === 'max') return this.arrayProducts.sort((a, b) => +b.price.split(',').join('') - +a.price.split(',').join(''));
       if (this.selectValue === 'names') return this.arrayProducts.filter((item) => item.name.includes(this.filterName));
