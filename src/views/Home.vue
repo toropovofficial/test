@@ -88,8 +88,8 @@ import productAlert from '../components/productAlert.vue';
   },
   computed: {
     test() {
-      if (this.selectValue === 'min') return this.arrayProducts.sort((a, b) => a.price.replace(/\s/g, '') - b.price.replace(/\s/g, ''));
-      if (this.selectValue === 'max') return this.arrayProducts.sort((a, b) => b.price.replace(/\s/g, '') - a.price.replace(/\s/g, ''));
+      if (this.selectValue === 'min') return this.arrayProducts.sort((a, b) => +a.price.split(',').join('') - +b.price.split(',').join(''));
+      if (this.selectValue === 'max') return this.arrayProducts.sort((a, b) => +b.price.split(',').join('') - +a.price.split(',').join(''));
       if (this.selectValue === 'names') return this.arrayProducts.filter((item) => item.name.includes(this.filterName));
       return this.arrayProducts.sort((a, b) => a.time - b.time);
     },
