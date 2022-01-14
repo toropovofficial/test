@@ -1,11 +1,11 @@
 <template lang="">
-  <div v-show="1"  @click.stop="test($event)"  class="user"  :class="myClass">
+  <div v-show="item.isShow"  @click.stop="test($event)"  class="user"  :class="myClass">
     <div  class="user__wrapper">
       <div class="user__age">
         <h2 >{{ item.age }}</h2>
       </div>
       <div class="user__name">
-         <h1 >{{ item.name }}</h1>
+         <h1 >{{ item.name }}{{isChild}}</h1>
       </div>
     </div>
     <template v-if="item.child">
@@ -40,9 +40,9 @@ export default {
     myClass() {
       return this.child ? 'user-child' : 'user-main';
     },
-    // isChild() {
-
-    // }
+    isChild() {
+      return this.item.child ? 'yes' : '';
+    },
   },
 };
 </script>

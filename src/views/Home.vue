@@ -2,7 +2,7 @@
   <div class="home">
     <div  class="home__table">
       <child v-for="item in listUsers" :key="item.name" :item="item"> </child>
-      <button >сохранить {{test}}</button>
+      <button >сохранить</button>
     </div>
     <appForm @sendFormInfo="createdChildUser"  ></appForm>
   </div>
@@ -81,10 +81,15 @@ export default {
   },
   computed: {
     test() {
-      const id = this.$store.getters['IdUser/getId'];
-      this.findParentUser(this.listUsers, 'id', id);
-      console.log(this.parentUser);
+      this.findParentUser(this.listUsers, 'id', this.$store.getters['IdUser/getId']);
       return this.$store.getters['IdUser/getId'];
+    },
+  },
+  watch: {
+    test() {
+      if (this.parentUser.child) {
+        this.parentUser.child.forEach((item) => { item.isShow = !item.isShow; });
+      }
     },
   },
 };
