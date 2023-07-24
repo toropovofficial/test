@@ -3,38 +3,38 @@
     @submit.prevent="createNewProduct(), saveProductToLocalStorage()"
     class="home__form">
       <form-input
-      :labelText="'Наименование товара'"
-      :typeInput="'text'"
-      :placeHolder="'Введите наименование товара'"
-      v-model.trim="nameProduct"
-      :errorMsg='error'>
+        :labelText="'Наименование товара'"
+        :typeInput="'text'"
+        :placeHolder="'Введите наименование товара'"
+        v-model.trim="nameProduct"
+        :errorMsg='error'>
       </form-input>
 
       <form-text-area
-      :labelText="'Описание товара'"
-      :placeHolder="'Введите описание товара'"
-      v-model="descrProduct">
+        :labelText="'Описание товара'"
+        :placeHolder="'Введите описание товара'"
+        v-model="descrProduct">
       </form-text-area>
 
       <form-input
-      :labelText="'Ссылка на изображение товара'"
-      :typeInput="'text'"
-      :placeHolder="'Введите описание товара'"
-      v-model.trim="linkProduct"
-      :errorMsg='error'>
+        :labelText="'Ссылка на изображение товара'"
+        :typeInput="'text'"
+        :placeHolder="'Введите описание товара'"
+        v-model.trim="linkProduct"
+        :errorMsg='error'>
       </form-input>
 
       <form-input
-      :labelText="'Цена товара'"
-      :typeInput="'number'"
-      :placeHolder="'Введите цену'"
-      v-model="priceProduct"
-      :errorMsg='error'>
+        :labelText="'Цена товара'"
+        :typeInput="'number'"
+        :placeHolder="'Введите цену'"
+        v-model="priceProduct"
+        :errorMsg='error'>
       </form-input>
 
       <form-button
-      :btnText="'Добавить товар'"
-      :disabled="isDisabled">
+        :btnText="'Добавить товар'"
+        :disabled="isDisabled">
       </form-button>
   </form>
 </template>
